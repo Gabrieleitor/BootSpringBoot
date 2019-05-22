@@ -2,17 +2,17 @@
 
 ## Indice
 
-- Pre-requisitos 
-- Primeros pasos
+- Pre-requisitos (Seba)
+- Primeros pasos (Seba, Sil)
     - Introducción a Spring Boot
-    - Annotations comunes
     - Estructura y configuración general
-- Nuestro primer CRUD
+- Nuestro primer CRUD (Sil)
+    - Creación de un Controller (GET, POST, PUT, DELETE)
+    - Creación de un Servicio
     - Configurando JPA con H2
-    - Creando un modelo
+    - Creación de un modelo
     - Mapenado un Repositorio
-    - Creación del Controller
-- Spring Data (JPA)    
+- Spring Data (JPA) (Seba) 
     - Mapeo de entidades
         - Mapeo de un objeto
         - Mapeo de relaciones
