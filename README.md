@@ -4,16 +4,12 @@
 
 - Pre-requisitos
 - Primeros pasos
+    - Annotations comunes
 - Nuestro primer CRUD
     - Configurando JPA con H2
     - Creando un modelo
     - Mapenado un Repositorio
     - Creación del Controller
-- Trabajando con DTOs
-    - Para que sirve
-    - BeanUtils
-    - Converters
-    - ModelMapper
 - Spring Data (JPA)    
     - Mapeo de entidades
         - Mapeo de un objeto
@@ -21,6 +17,11 @@
         - Converter atribute
     - Liquibase
     - Configurando MySQL (Spin-off)
+- Trabajando con DTOs
+    - Para que sirve
+    - BeanUtils
+    - Converters
+    - ModelMapper
 - Paginacion
 - Cache
     - Configuracion con Ehcache
