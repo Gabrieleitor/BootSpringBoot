@@ -4,8 +4,9 @@
 
 - Pre-requisitos 
 - Primeros pasos
-    - Estructura y configuración general
+    - Introducción a Spring Boot
     - Annotations comunes
+    - Estructura y configuración general
 - Nuestro primer CRUD
     - Configurando JPA con H2
     - Creando un modelo
