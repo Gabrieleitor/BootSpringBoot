@@ -2,8 +2,9 @@
 
 ## Indice
 
-- Pre-requisitos
+- Pre-requisitos 
 - Primeros pasos
+    - Estructura y configuración general
     - Annotations comunes
 - Nuestro primer CRUD
     - Configurando JPA con H2
@@ -23,6 +24,7 @@
     - Converters
     - ModelMapper
 - Paginacion
+- Exceptions
 - Cache
     - Configuracion con Ehcache
     - Manejo de distintos caches
