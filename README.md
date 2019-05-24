@@ -21,7 +21,7 @@ Para poder aprovechar al máximo el training, será necesario contar con:
 
 ## Temario
 
-1. [Primeros pasos](wiki/01-PrimerosPasos)
+1. [Primeros pasos](wiki/01-PrimerosPasos.md)
     - Introducción a Spring Boot
     - Estructura y configuración general
 2. [Nuestro primer CRUD](wiki/02-Crud)
