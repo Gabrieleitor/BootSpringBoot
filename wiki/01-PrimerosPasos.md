@@ -131,4 +131,4 @@ Para correr la aplicación, ejecutamos `java -jar target/training-0.0.1-SNAPSHOT
 
 
 ---
-[02-Crud.md](Siguiente paso)
+[Siguiente paso](02-Crud.md)
