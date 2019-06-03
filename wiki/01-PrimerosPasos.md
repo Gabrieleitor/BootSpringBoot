@@ -69,7 +69,7 @@ El método `main` es el encargado de inicializar todo nuestro proyecto de Spring
 
 ### 1.1.3- Ejecutando el proyecto
 
-Para correr el proyecto, con una consola nos situamos en la raiz del proyecto y ejecutamos `./mvnw spring-boot:run` para Unix/OSX y `mvnw.bat spring-boot:run` para Windows.
+Para correr el proyecto, con una consola nos situamos en la raiz del proyecto y ejecutamos `mvn spring-boot:run`.
 Debieras ver algo parecido a:
 ```bash
   .   ____          _            __ _ _
@@ -88,7 +88,7 @@ Debieras ver algo parecido a:
 
 Podemos ver que la aplicación se encuentra inicializada en el puerto `8080` y se inició sin problemas.
 
-> *Nota:* Para cortar la ejecución se puede usar `ctrl+c` sobre la consola donde está ejecutando. El comando puede diferir según el SO.
+> *Nota:* Para cortar la ejecución se puede usar `ctrl+c` sobre la consola donde está ejecutando.
 
 
 ## 1.2- Primer aplicación con Spring Boot
@@ -120,9 +120,9 @@ Ejecutamos el proyecto como vimos en el punto anterior y en un navegador abrimos
 En este caso veremos el texto "Step 1- BootSpringBoot".
 
 
-## 1.3- Creando un Jar ejecutable
+## 1.3- Jar ejecutable
 
 Para finalizar estos primeros pasos, crearemos un .jar que contenga toda la aplicación y pueda ejecutarse.
-Basta con ejecutar `./mvnw package` para que nuestro proyecto quede empaquetado en el archivo `training-0.0.1-SNAPSHOT.jar` dentro de la carpeta `target`.
+Basta con ejecutar `mvn package` para que nuestro proyecto quede empaquetado en el archivo `training-0.0.1-SNAPSHOT.jar` dentro de la carpeta `target`.
 
 Para correr la aplicación, ejecutamos `java -jar target/training-0.0.1-SNAPSHOT.jar` para salir de la app usamos `ctrl+c`.
