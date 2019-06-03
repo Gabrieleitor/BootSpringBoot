@@ -12,7 +12,7 @@ Está dirigido a todos a aquellos programadores que quieran aprender o ampliar s
 Para poder aprovechar al máximo el training, será necesario contar con:
 
 * [Git](https://git-scm.com/downloads)
-* Java 8 JDK ([OpenJDK / OracleJDK](https://sdkman.io/))
+* Java 11 JDK ([OpenJDK / OracleJDK](https://sdkman.io/))
 * [Maven](https://maven.apache.org/)
 * IDE (Ej: [IntelliJ](https://www.jetbrains.com/idea/download/), [Eclipse](https://www.eclipse.org/downloads/packages/))
 * [Lombok](https://projectlombok.org/) (Activalo en tu IDE [acá](https://projectlombok.org/setup/overview))
