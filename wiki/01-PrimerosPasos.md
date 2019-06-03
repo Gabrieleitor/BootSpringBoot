@@ -128,3 +128,7 @@ Para finalizar estos primeros pasos, crearemos un .jar que contenga toda la apli
 Basta con ejecutar `mvn package` para que nuestro proyecto quede empaquetado en el archivo `training-0.0.1-SNAPSHOT.jar` dentro de la carpeta `target`.
 
 Para correr la aplicación, ejecutamos `java -jar target/training-0.0.1-SNAPSHOT.jar` para salir de la app usamos `ctrl+c`.
+
+
+---
+[02-Crud.md](Siguiente paso)
