@@ -21,7 +21,9 @@ Debes repetir esto para cada paso futuro y modificar el número del paso al corr
 
 ### 1.1.1- Revisando el POM
 
-Para poder arrancar, tenemos que revisar y entender el archivo `pom.xml` de Maven. Se encuentra en la raiz del proyecto y en el podemos encontrar como es que el proyecto hara el build del código fuente, entre otras cosas. 
+Para poder arrancar, tenemos que revisar y entender el archivo `pom.xml` de Maven. Se encuentra en la raiz del proyecto y se puede abrir con cualquier editor de texto.
+
+En el pom.xml, podemos encontrar como es el build del proyecto, la versión de Java que se utiliza, dependencias del proyecto y muchas cosas más. 
 
 ```xml
 ...
@@ -30,7 +32,7 @@ Para poder arrancar, tenemos que revisar y entender el archivo `pom.xml` de Mave
 </properties> 
 ...
 ```
-Es importante destacar que estaremos usando Java 11.
+Es importante destacar que vamos a estar usando Java 11.
 
 Como estaremos crenado una Rest API, contaremos con el starter web de Spring boot, entre otras dependencias.
 ```xml
@@ -43,7 +45,7 @@ Como estaremos crenado una Rest API, contaremos con el starter web de Spring boo
 </dependencies>
 ```
 
-> **Nota:** Todos los IDEs modernos soportan y permiten importar un proyecto Maven.
+> **Nota:** Todos los IDEs modernos soportan y permiten importar un proyecto Maven ya existente.
 
 
 ### 1.1.2- Estructura de carpetas
@@ -63,7 +65,7 @@ public class TrainingApplication {
 }
 ```
 
-La annotation `@SpringBootApplication` le indica al framework que este es el punto de partida del proyecto. 
+La annotation `@SpringBootApplication` le indica al framework que este es el punto de partida de la app. 
 
 El método `main` es el encargado de inicializar todo nuestro proyecto de Spring Boot, inicializando todo el contexto necesario. 
 
@@ -111,13 +113,13 @@ public class FirstStep {
     }
 }
 ```
-Lo primero a destacar es la annotation `@RestController` en nuestra clase. Esto le indica a Spring que la clase tiene un rol especifico. En este caso, nuestra clase es un controller y Spring lo tendrá presente cuando haya un request web.  
+Lo primero a destacar es la annotation `@RestController`. Esto le indica a Spring que la clase tiene un rol especifico. En este caso, es un controller rest y Spring lo tendrá presente cuando haya un request web.  
 
-La annotation `@GetMapping` provee inforamción de ruteo. En este caso, indica que si un request HTTP tipo GET con la ruta `/inicio` debe ser mapeado al método `step1`. El "return type" del método indica que Spring debe devolver un texto como respuesta. 
+La annotation `@GetMapping` provee inforamción de ruteo. En este ejemplo, si llega un request HTTP tipo GET con la ruta `/inicio` debe ser mapeado al método `step1`. El "return type" del método indica que Spring debe devolver un texto como respuesta. 
 
 
 Ejecutamos el proyecto como vimos en el punto anterior y en un navegador abrimos la página `http://localhost:8080/inicio`. 
-En este caso veremos el texto "Step 1- BootSpringBoot".
+Debiera aparecer el texto "Step 1- BootSpringBoot".
 
 
 ## 1.3- Jar ejecutable
