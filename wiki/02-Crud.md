@@ -178,7 +178,7 @@ spring:
 http://localhost:8080/h2-console/
 ```
 
-<img src="images/2.1-h2_console.png" width="250" alt="H2 Console"/>
+<img src="images/h2_console.PNG" width="250" alt="H2 Console"/>
 
 ---
-[Siguiente paso]
+[Siguiente paso](03-SpringData.md)
