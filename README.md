@@ -12,7 +12,7 @@ Está dirigido a todos a aquellos programadores que quieran aprender o ampliar s
 Para poder aprovechar al máximo el training, será necesario contar con:
 
 * [Git](https://git-scm.com/downloads)
-* Java 11 JDK ([OpenJDK / OracleJDK](https://sdkman.io/))
+* Java 8+ ([OpenJDK / OracleJDK](https://sdkman.io/))
 * [Maven](https://maven.apache.org/)
 * IDE (Ej: [IntelliJ](https://www.jetbrains.com/idea/download/), [Eclipse](https://www.eclipse.org/downloads/packages/))
 * [Lombok](https://projectlombok.org/) (Activalo en tu IDE [acá](https://projectlombok.org/setup/overview))
@@ -25,11 +25,11 @@ Para poder aprovechar al máximo el training, será necesario contar con:
     - Introducción a Spring Boot
     - Estructura y configuración general
 2. [Nuestro primer CRUD](wiki/02-Crud.md)
-    - Creación de un Controller (GET, POST, PUT, DELETE)
+    - Creación de un Controller
     - Creación de un Servicio
+    - Creación del modelo de datos
+    - Creación de un repositorio
     - Configurando JPA con H2
-    - Creación de un modelo
-    - Mapenado un Repositorio
 3. [Spring Data - JPA](wiki/03-SpringData) 
     - Mapeo de entidades
         - Mapeo de un objeto
