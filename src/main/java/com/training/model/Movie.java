@@ -3,17 +3,15 @@ package com.training.model;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * The movie entity.
@@ -25,7 +23,6 @@ public class Movie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(updatable = false, nullable = false)
     private Long id;
 
     private String name;
@@ -33,7 +30,7 @@ public class Movie {
     @Enumerated(value = EnumType.STRING)
     private Genre genre;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "movie")
-    private List<Actor> actors;
+    @ManyToMany(mappedBy = "movies")
+    private Set<Actor> actors;
 
 }

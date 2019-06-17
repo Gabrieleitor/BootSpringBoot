@@ -1,8 +1,8 @@
 package com.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.training.model.Movie;
-import com.training.service.MovieService;
+import com.training.model.Actor;
+import com.training.service.ActorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,78 +20,76 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = MovieController.class)
-public class MovieControllerTest {
+@WebMvcTest(controllers = ActorController.class)
+public class ActorControllerTest {
 
-    private static final Long MOVIE_ID = 1L;
-    private static final String MOVIE_NAME = "The Movie name";
+    private static final Long ACTOR_ID = 1L;
+    private static final String ACTOR_NAME = "The Actor name";
 
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private MovieService movieService;
+    private ActorService actorService;
 
     @Test
-    public void testGetMovie() throws Exception {
+    public void testGetActor() throws Exception {
         //when
-        this.mockMvc.perform(get("/movies/" + MOVIE_ID))
+        this.mockMvc.perform(get("/actors/" + ACTOR_ID))
             .andExpect(status().isOk());
 
         //then
-        verify(movieService).findById(MOVIE_ID);
+        verify(actorService).findById(ACTOR_ID);
     }
 
     @Test
-    public void testGetMovies() throws Exception {
+    public void testGetActors() throws Exception {
         //when
-        this.mockMvc.perform(get("/movies"))
+        this.mockMvc.perform(get("/actors"))
             .andExpect(status().isOk());
 
         //then
-        verify(movieService).findAll();
+        verify(actorService).findAll();
     }
 
     @Test
-    public void testSaveMovie() throws Exception {
+    public void testSaveActor() throws Exception {
         //given
-        Movie movie = Movie.builder()
-            .name(MOVIE_NAME)
+        Actor actor = Actor.builder()
             .build();
 
         //when
-        this.mockMvc.perform(post("/movies")
+        this.mockMvc.perform(post("/actors")
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(new ObjectMapper().writeValueAsString(movie)))
+            .content(new ObjectMapper().writeValueAsString(actor)))
             .andExpect(status().isOk());
 
         //then
-        verify(movieService).save(movie);
+        verify(actorService).save(actor);
     }
 
     @Test
-    public void testUpdateMovie() throws Exception {
-        Movie movie = Movie.builder()
-            .name("")
+    public void testUpdateActor() throws Exception {
+        Actor actor = Actor.builder()
             .build();
 
-        this.mockMvc.perform(put("/movies/" + MOVIE_ID)
+        this.mockMvc.perform(put("/actors/" + ACTOR_ID)
             .contentType(MediaType.APPLICATION_JSON_VALUE)
-            .content(new ObjectMapper().writeValueAsString(movie)))
+            .content(new ObjectMapper().writeValueAsString(actor)))
             .andExpect(status().isOk());
 
-        movie.setId(MOVIE_ID);
-        verify(movieService).save(movie);
+        actor.setId(ACTOR_ID);
+        verify(actorService).save(actor);
     }
 
     @Test
-    public void testDeleteMovie() throws Exception {
+    public void testDeleteActor() throws Exception {
         //when
-        this.mockMvc.perform(delete("/movies/" + MOVIE_ID))
+        this.mockMvc.perform(delete("/actors/" + ACTOR_ID))
             .andExpect(status().isOk());
 
         //then
-        verify(movieService).deleteById(MOVIE_ID);
+        verify(actorService).deleteById(ACTOR_ID);
     }
 
 }

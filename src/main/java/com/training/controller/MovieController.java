@@ -16,7 +16,6 @@ import java.util.List;
 
 /**
  * The Movie Controller.
- *
  */
 @RestController
 @RequestMapping("/movies")
@@ -27,6 +26,7 @@ public class MovieController {
 
     /**
      * Returns a movie given an id.
+     *
      * @param id the movie id
      * @return the movie
      */
@@ -37,6 +37,7 @@ public class MovieController {
 
     /**
      * Returns all movies.
+     *
      * @return a list of movies
      */
     @GetMapping
@@ -46,6 +47,7 @@ public class MovieController {
 
     /**
      * Saves a new movie
+     *
      * @param movie the movie
      * @return the saved movie
      */
@@ -54,12 +56,24 @@ public class MovieController {
         return movieService.save(movie);
     }
 
+    /**
+     * Updates a movie given an id.
+     *
+     * @param id    the movie id
+     * @param movie the movie
+     * @return the updated movie
+     */
     @PutMapping("/{id}")
     public Movie updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
         movie.setId(id);
         return movieService.save(movie);
     }
 
+    /**
+     * Deletes a movie given an id
+     *
+     * @param id the movie id
+     */
     @DeleteMapping(value = "/{id}")
     public void deleteMovie(@PathVariable Long id) {
         movieService.deleteById(id);

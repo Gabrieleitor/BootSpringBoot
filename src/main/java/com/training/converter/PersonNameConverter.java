@@ -8,7 +8,7 @@ import javax.persistence.Converter;
 
 import static java.util.Objects.isNull;
 
-@Converter
+@Converter(autoApply = true)
 public class PersonNameConverter implements AttributeConverter<PersonName, String> {
 
     private static final String NAME_SEPARATOR = ", ";
@@ -20,12 +20,12 @@ public class PersonNameConverter implements AttributeConverter<PersonName, Strin
         }
 
         StringBuilder sb = new StringBuilder();
-        if (!StringUtils.isEmpty(personName.getName())) {
-            sb.append(personName.getName());
+        if (!StringUtils.isEmpty(personName.getLastName())) {
+            sb.append(personName.getLastName());
             sb.append(NAME_SEPARATOR);
         }
 
-        if (!StringUtils.isEmpty(personName.getLastname())) {
+        if (!StringUtils.isEmpty(personName.getName())) {
             sb.append(personName.getName());
         }
 
@@ -47,13 +47,13 @@ public class PersonNameConverter implements AttributeConverter<PersonName, Strin
         PersonName personName = new PersonName();
         String firstPiece = !pieces[0].isEmpty() ? pieces[0] : null;
         if (dbPersonName.contains(NAME_SEPARATOR)) {
-            personName.setName(firstPiece);
+            personName.setLastName(firstPiece);
 
             if (pieces.length >= 2 && !StringUtils.isEmpty(pieces[1])) {
-                personName.setLastname(pieces[1]);
+                personName.setName(pieces[1]);
             }
         } else {
-            personName.setLastname(firstPiece);
+            personName.setLastName(firstPiece);
         }
 
         return personName;
