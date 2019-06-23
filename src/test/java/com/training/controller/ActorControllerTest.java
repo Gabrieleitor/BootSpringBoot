@@ -1,6 +1,7 @@
 package com.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.training.controller.dto.ActorDTO;
 import com.training.model.Actor;
 import com.training.service.ActorService;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ public class ActorControllerTest {
     @Test
     public void testSaveActor() throws Exception {
         //given
-        Actor actor = Actor.builder()
+        ActorDTO actor = ActorDTO.builder()
             .build();
 
         //when
@@ -70,7 +71,7 @@ public class ActorControllerTest {
 
     @Test
     public void testUpdateActor() throws Exception {
-        Actor actor = Actor.builder()
+        ActorDTO actor = ActorDTO.builder()
             .build();
 
         this.mockMvc.perform(put("/actors/" + ACTOR_ID)

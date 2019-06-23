@@ -1,5 +1,6 @@
 package com.training.service;
 
+import com.training.controller.dto.ActorDTO;
 import com.training.converter.PersonNameConverter;
 import com.training.model.Actor;
 import com.training.model.PersonName;
@@ -44,7 +45,7 @@ public class ActorServiceTest {
         when(actorRepository.findById(anyLong())).thenReturn(Optional.of(expectedActor));
 
         //when
-        Actor actor = actorService.findById(ACTOR_ID);
+        ActorDTO actor = actorService.findById(ACTOR_ID);
 
         //then
         Assertions.assertNotNull(actor);
@@ -67,12 +68,11 @@ public class ActorServiceTest {
         when(actorRepository.findAll()).thenReturn(expectedActors);
 
         //when
-        List<Actor> actors = actorService.findAll();
+        List<ActorDTO> actors = actorService.findAll();
 
         //then
         Assertions.assertNotNull(actors);
         Assertions.assertEquals(1, actors.size());
-        Assertions.assertSame(expectedActors, actors);
     }
 
     @Test
@@ -82,18 +82,18 @@ public class ActorServiceTest {
             .id(ACTOR_ID)
             .build();
 
-        Actor actorToBeSaved = Actor.builder()
+        ActorDTO actorToBeSaved = ActorDTO.builder()
             .build();
 
         when(actorRepository.save(any(Actor.class))).thenReturn(expectedActor);
 
         //when
-        Actor actor = actorService.save(actorToBeSaved);
+        ActorDTO actor = actorService.save(actorToBeSaved);
 
         //then
         Assertions.assertNotNull(actor);
         Assertions.assertNotNull(actor.getId());
-        Assertions.assertEquals(actor.getName(), expectedActor.getName());
+        Assertions.assertEquals(actor.getId(), expectedActor.getId());
     }
 
     @Test

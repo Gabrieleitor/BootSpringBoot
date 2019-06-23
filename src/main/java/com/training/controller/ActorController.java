@@ -1,5 +1,6 @@
 package com.training.controller;
 
+import com.training.controller.dto.ActorDTO;
 import com.training.model.Actor;
 import com.training.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class ActorController {
      * @return the actor
      */
     @GetMapping(value = "/{id}")
-    public Actor getActor(@PathVariable Long id) {
+    public ActorDTO getActor(@PathVariable Long id) {
         return actorService.findById(id);
     }
 
@@ -41,32 +42,32 @@ public class ActorController {
      * @return a list of actors
      */
     @GetMapping
-    public List<Actor> getActors() {
+    public List<ActorDTO> getActors() {
         return actorService.findAll();
     }
 
     /**
      * Saves a new actor
      *
-     * @param actor the actor
+     * @param actorDTO the actor
      * @return the saved actor
      */
     @PostMapping
-    public Actor saveActor(@RequestBody Actor actor) {
-        return actorService.save(actor);
+    public ActorDTO saveActor(@RequestBody ActorDTO actorDTO) {
+        return actorService.save(actorDTO);
     }
 
     /**
      * Updates an actor given an id.
      *
      * @param id    the actor id
-     * @param actor the actor
+     * @param actorDTO the actor
      * @return the updated actor
      */
     @PutMapping("/{id}")
-    public Actor updateActor(@PathVariable Long id, @RequestBody Actor actor) {
-        actor.setId(id);
-        return actorService.save(actor);
+    public ActorDTO updateActor(@PathVariable Long id, @RequestBody ActorDTO actorDTO) {
+        actorDTO.setId(id);
+        return actorService.save(actorDTO);
     }
 
     /**

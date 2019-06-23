@@ -1,7 +1,9 @@
 package com.training.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -19,6 +21,8 @@ import java.util.Set;
 @Builder
 @Data
 @Entity(name = "movies")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Movie {
 
     @Id

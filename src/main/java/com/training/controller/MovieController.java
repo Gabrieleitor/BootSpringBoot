@@ -1,5 +1,6 @@
 package com.training.controller;
 
+import com.training.controller.dto.MovieDTO;
 import com.training.model.Movie;
 import com.training.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class MovieController {
      * @return the movie
      */
     @GetMapping(value = "/{id}")
-    public Movie getMovie(@PathVariable Long id) {
+    public MovieDTO getMovie(@PathVariable Long id) {
         return movieService.findById(id);
     }
 
@@ -41,32 +42,32 @@ public class MovieController {
      * @return a list of movies
      */
     @GetMapping
-    public List<Movie> getMovies() {
+    public List<MovieDTO> getMovies() {
         return movieService.findAll();
     }
 
     /**
      * Saves a new movie
      *
-     * @param movie the movie
+     * @param movieDTO the movie
      * @return the saved movie
      */
     @PostMapping
-    public Movie saveMovie(@RequestBody Movie movie) {
-        return movieService.save(movie);
+    public MovieDTO saveMovie(@RequestBody MovieDTO movieDTO) {
+        return movieService.save(movieDTO);
     }
 
     /**
      * Updates a movie given an id.
      *
      * @param id    the movie id
-     * @param movie the movie
+     * @param movieDTO the movie
      * @return the updated movie
      */
     @PutMapping("/{id}")
-    public Movie updateMovie(@PathVariable Long id, @RequestBody Movie movie) {
-        movie.setId(id);
-        return movieService.save(movie);
+    public MovieDTO updateMovie(@PathVariable Long id, @RequestBody MovieDTO movieDTO) {
+        movieDTO.setId(id);
+        return movieService.save(movieDTO);
     }
 
     /**

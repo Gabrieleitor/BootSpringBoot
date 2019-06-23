@@ -1,8 +1,10 @@
 package com.training.model;
 
 import com.training.converter.PersonNameConverter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -20,6 +22,8 @@ import java.util.Set;
 @Builder
 @Data
 @Entity(name = "actors")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Actor {
 
     @Id

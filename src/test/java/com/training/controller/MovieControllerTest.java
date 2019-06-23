@@ -1,6 +1,7 @@
 package com.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.training.controller.dto.MovieDTO;
 import com.training.model.Movie;
 import com.training.service.MovieService;
 import org.junit.jupiter.api.Test;
@@ -55,7 +56,7 @@ public class MovieControllerTest {
     @Test
     public void testSaveMovie() throws Exception {
         //given
-        Movie movie = Movie.builder()
+        MovieDTO movie = MovieDTO.builder()
             .name(MOVIE_NAME)
             .build();
 
@@ -71,7 +72,7 @@ public class MovieControllerTest {
 
     @Test
     public void testUpdateMovie() throws Exception {
-        Movie movie = Movie.builder()
+        MovieDTO movie = MovieDTO.builder()
             .name("")
             .build();
 

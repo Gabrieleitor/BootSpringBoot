@@ -1,5 +1,6 @@
 package com.training.service;
 
+import com.training.controller.dto.MovieDTO;
 import com.training.model.Movie;
 import com.training.repository.MovieRepository;
 import org.junit.jupiter.api.Assertions;
@@ -44,7 +45,7 @@ public class MovieServiceTest {
         when(movieRepository.findById(anyLong())).thenReturn(Optional.of(expectedMovie));
 
         //when
-        Movie movie = movieService.findById(MOVIE_ID);
+        MovieDTO movie = movieService.findById(MOVIE_ID);
 
         //then
         Assertions.assertNotNull(movie);
@@ -68,12 +69,11 @@ public class MovieServiceTest {
         when(movieRepository.findAll()).thenReturn(expectedMovies);
 
         //when
-        List<Movie> movies = movieService.findAll();
+        List<MovieDTO> movies = movieService.findAll();
 
         //then
         Assertions.assertNotNull(movies);
         Assertions.assertEquals(1, movies.size());
-        Assertions.assertSame(expectedMovies, movies);
     }
 
     @Test
@@ -84,14 +84,14 @@ public class MovieServiceTest {
             .name(MOVIE_NAME)
             .build();
 
-        Movie movieToBeSaved = Movie.builder()
+        MovieDTO movieToBeSaved = MovieDTO.builder()
             .name(MOVIE_NAME)
             .build();
 
         when(movieRepository.save(any(Movie.class))).thenReturn(expectedMovie);
 
         //when
-        Movie movie = movieService.save(movieToBeSaved);
+        MovieDTO movie = movieService.save(movieToBeSaved);
 
         //then
         Assertions.assertNotNull(movie);
