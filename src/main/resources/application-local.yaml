@@ -1,7 +1,11 @@
 # Datasource
 spring:
   datasource:
-    url: jdbc:h2:mem:testdb
-    driverClassName: org.h2.Driver
+    url: jdbc:mysql://mysql-docker-container:3306/testdb?useSSL=false
+    driverClassName: com.mysql.cj.jdbc.Driver
     username: sa
-    password:
+    password: p4ssword
+  jpa:
+    hibernate:
+      ## Hibernate ddl auto (create, create-drop, validate, update)
+      ddl-auto:create
