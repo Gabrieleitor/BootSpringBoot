@@ -9,7 +9,8 @@ $ git checkout -f step-4
 
 Se utiliza para transferir varios atributos entre el cliente y el servidor o viceversa. Esto permite desacoplar la capa pública, del servicio con el modelo interno utilizado para guardar en la base de datos o backend.
 
-<br/>
+&nbsp;
+
 ## 4.2 Implementando DTOs con BeanUtils
 
 Continuando con la aplicación de películas, ahora vamos a estar agregando los DTOs para poder comunicarnos.
@@ -52,7 +53,7 @@ public class MovieDTO {
 
 }
 ```
-<br/>
+&nbsp;
 ### 4.2.1- Modificando los controllers.
 
 Una vez creados nuestros objetos, tenemos que modificar los `controllers` para que tomen los `DTOs` que creamos.
@@ -80,7 +81,7 @@ Debemos modificar todo el controller hasta que no quede referencia al modelo `Ac
 
 > **Nota:** Debemos implementar los mismos cambios en `MovieController.java` con `MovieDTO` y terminar los métodos faltantes en `ActorController.java`.
 
-<br/>
+&nbsp;
 ### 4.2.2- Modificando los service.
 
 Continuando con la modificación, para que el controller se "entienda" con el service, debemos hacer unas cuantas modificaciones en los service de nuestra aplicación.
@@ -142,10 +143,10 @@ La utilización del `BeanUtils.copyProperties` nos evita estar copiando uno a un
 
 Otro punto a ver, es que estamos agregando demasiado código de conversión en la capa de servicio. Para evitar esto, podemos utilizar la capa de converters que provee Spring y desacoplar la conversión de un objeto de la capa de lógica.
 
-<br/>
+&NewLine
 > **Nota:** Para finalizar los cambios, debemos implementar los mismos cambios en `MovieService.java` con `MovieDTO` y terminar los métodos faltantes en `ActorService.java`. Revalidar los tests y adaptarlos para que no tengan errores.
 
-<br/>
+&nbsp;
 ## 4.3 Usando Converters
 
 Actualizamos el entorno al **paso 4.2** de la aplicación.
@@ -226,7 +227,7 @@ En estos momentos los converters son completamente funcionales y basta con inyec
     private ActorDTOToActorConverter actorDTOToActorConverter;
 ```
 
-<br/>
+&nbsp;
 ### 4.3.2 ConversionService 
 
 Spring posee el servicio `ConversionService` que permite centralizar todos los converters y formatters que haya en la aplicación. Con esto logramos encapsular cualquier conversión en un único servicio y no necesitamos estar inyectando múltiples veces el mismo converter en distintos servicios.
@@ -272,7 +273,7 @@ Ahora vamos al `ActorService` y agregamos el servicio `ConversionService`
 
 Ahora modificamos los métodos para que utilicen nuestro conversor.
 
-<br/>
+&nbsp;
 #### Método findById
 ```java
     public ActorDTO findById(Long id) {
@@ -286,7 +287,7 @@ Ahora modificamos los métodos para que utilicen nuestro conversor.
 ```
 Vemos que se elimina todo el código extra para la conversión y solo se invoca al service `conversionService.convert` indicando el origen de datos y la class a la que se quiere convertir. 
 
-<br/>
+&nbsp;
 #### Método save
 ```java
     public ActorDTO save(ActorDTO actorDTO) {
@@ -300,7 +301,7 @@ Vemos que se elimina todo el código extra para la conversión y solo se invoca 
 ```
 Si comparamos cómo quedó finalmente el método `save` con el que contábamos anteriormente, vemos que se eliminó todo rastro de lógica de conversión de objetos, gracias al servicio de `conversionService`.
 
-<br/>
+&nbsp;
 ## 4.4 ModelMapper
 
 La bibioteca [ModelMapper](http://modelmapper.org/) permite un mapeo mucho más eficiente y dinámico que el `BeanUtils` visto en este curso. 
