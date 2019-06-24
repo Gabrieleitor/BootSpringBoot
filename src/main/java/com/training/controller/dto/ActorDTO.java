@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Builder
@@ -19,5 +19,5 @@ public class ActorDTO {
 
     private String lastName;
 
-    private Set<MovieDTO> movies;
+    private List<MovieDTO> movies;
 }
