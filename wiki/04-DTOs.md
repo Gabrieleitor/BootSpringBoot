@@ -146,7 +146,8 @@ La utilización del `BeanUtils.copyProperties` nos evita estar copiando uno a un
 
 Otro punto a ver, es que estamos agregando demasiado código de conversión en la capa de servicio. Para evitar esto, podemos utilizar la capa de converters que provee Spring y desacoplar la conversión de un objeto de la capa de lógica.
 
-&NewLine
+&nbsp;
+
 > **Nota:** Para finalizar los cambios, debemos implementar los mismos cambios en `MovieService.java` con `MovieDTO` y terminar los métodos faltantes en `ActorService.java`. Revalidar los tests y adaptarlos para que no tengan errores.
 
 &nbsp;
