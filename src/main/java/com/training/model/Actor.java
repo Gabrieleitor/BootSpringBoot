@@ -1,5 +1,6 @@
 package com.training.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.training.converter.PersonNameConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,10 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import java.util.Set;
+import java.util.List;
 
 /**
  * The actor entity.
@@ -22,8 +21,8 @@ import java.util.Set;
 @Builder
 @Data
 @Entity(name = "actors")
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 public class Actor {
 
     @Id
@@ -34,10 +33,7 @@ public class Actor {
     private PersonName name;
 
     @ManyToMany
-    @JoinTable(
-        name = "movie_actor",
-        joinColumns = @JoinColumn(name = "actor_id"),
-        inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    private Set<Movie> movies;
+    @JsonIgnoreProperties("actors")
+    private List<Movie> movies;
 
 }
