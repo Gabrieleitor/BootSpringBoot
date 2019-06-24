@@ -31,7 +31,7 @@ public class ActorDTO {
 
     private String lastName;
 
-    private Set<MovieDTO> movies;
+    private List<MovieDTO> movies;
 }
 ```
 
@@ -49,7 +49,7 @@ public class MovieDTO {
 
     private String genre;
 
-    private Set<ActorDTO> actors;
+    private List<ActorDTO> actors;
 
 }
 ```
