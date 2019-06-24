@@ -30,22 +30,17 @@ Para poder aprovechar al máximo el training, será necesario contar con:
     - Creación del modelo de datos
     - Creación de un repositorio
     - Configurando JPA con H2
-3. [Spring Data - JPA](wiki/03-SpringData) 
+3. [Spring Data - JPA](wiki/03-SpringData.md) 
     - Mapeo de entidades
         - Mapeo de un objeto
         - Mapeo de relaciones
         - Converter atribute
     - Liquibase
     - Configurando MySQL (Spin-off)
-4. [Trabajando con DTOs](wiki/04-DTOs)
+4. [Trabajando con DTOs](wiki/04-DTOs.md)
     - Para que sirve
     - BeanUtils
     - Converters
     - ModelMapper
-5. [Paginacion](wiki/05-paginacion)
-6. Exceptions
-7. Cache
-    - Configuracion con Ehcache
-    - Manejo de distintos caches
-    - Migrando a Redis (Spin-off)
-
+5. [Paginacion](wiki/05-paginate.md)
+6. [Exceptions](wiki/06-exceptions.md)

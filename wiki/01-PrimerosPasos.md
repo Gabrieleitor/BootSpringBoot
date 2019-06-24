@@ -28,11 +28,11 @@ En el pom.xml, podemos encontrar como es el build del proyecto, la versión de J
 ```xml
 ...
 <properties>
-    <java.version>11</java.version>
+    <java.version>8</java.version>
 </properties> 
 ...
 ```
-Es importante destacar que vamos a estar usando Java 11.
+Es importante destacar que vamos a estar usando Java 8.
 
 Como estaremos crenado una Rest API, contaremos con el starter web de Spring boot, entre otras dependencias.
 ```xml
