@@ -1,6 +1,5 @@
 package com.training.controller.dto;
 
-import com.training.model.Actor;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +19,6 @@ public class MovieDTO {
 
     private String genre;
 
-    private Set<Actor> actors;
+    private Set<ActorDTO> actors;
 
 }
