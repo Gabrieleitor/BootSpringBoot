@@ -2,7 +2,6 @@ package com.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.training.controller.dto.MovieDTO;
-import com.training.model.Movie;
 import com.training.service.MovieService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
