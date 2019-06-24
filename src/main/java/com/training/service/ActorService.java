@@ -6,6 +6,7 @@ import com.training.model.PersonName;
 import com.training.repository.ActorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 public class ActorService {
 
     @Autowired
+    private ConversionService conversionService;
+
+    @Autowired
     private ActorRepository actorRepository;
 
     /**
@@ -35,12 +39,9 @@ public class ActorService {
         Assert.notNull(id, "The actor id cannot be null");
 
         Actor actor = actorRepository.findById(id)
-            .orElseThrow( () -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Actor nof found"));
+            .orElseThrow( () -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Actor not found"));
 
-        ActorDTO actorDTO = new ActorDTO();
-        BeanUtils.copyProperties(actor, actorDTO);
-
-        return actorDTO;
+        return conversionService.convert(actor, ActorDTO.class);
     }
 
     /**
@@ -48,17 +49,9 @@ public class ActorService {
      * @return a list with actors.
      */
     public List<ActorDTO> findAll() {
-        return actorRepository.findAll().stream().map( actor -> {
-            ActorDTO actorDTO = new ActorDTO();
-            BeanUtils.copyProperties(actor, actorDTO);
-
-            if (Objects.nonNull(actor.getName())) {
-                actorDTO.setName(actor.getName().getName());
-                actorDTO.setLastName(actor.getName().getLastName());
-            }
-
-            return actorDTO;
-        }).collect(Collectors.toList());
+        return actorRepository.findAll().stream()
+            .map( actor -> conversionService.convert(actor, ActorDTO.class))
+            .collect(Collectors.toList());
     }
 
     /**
@@ -70,23 +63,11 @@ public class ActorService {
      */
     public ActorDTO save(ActorDTO actorDTO) {
         Assert.notNull(actorDTO, "The actor cannot be null");
-        Actor actor = new Actor();
 
-        BeanUtils.copyProperties(actorDTO, actor);
-        PersonName personName = new PersonName(actorDTO.getName(), actorDTO.getLastName());
-        actor.setName(personName);
-
+        Actor actor = conversionService.convert(actorDTO, Actor.class);
         actor = actorRepository.save(actor);
 
-        ActorDTO rtaDTO = new ActorDTO();
-        BeanUtils.copyProperties(actor, rtaDTO);
-
-        if (Objects.nonNull(actor.getName())) {
-            rtaDTO.setName(actor.getName().getName());
-            rtaDTO.setLastName(actor.getName().getLastName());
-        }
-
-        return rtaDTO;
+        return conversionService.convert(actor, ActorDTO.class);
     }
 
     /**

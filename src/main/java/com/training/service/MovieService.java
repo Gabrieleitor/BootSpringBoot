@@ -7,6 +7,7 @@ import com.training.repository.MovieRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -24,6 +25,9 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     @Autowired
+    private ConversionService conversionService;
+
+    @Autowired
     private MovieRepository movieRepository;
 
     /**
@@ -36,11 +40,9 @@ public class MovieService {
     public MovieDTO findById(Long id) {
         Assert.notNull(id, "The movie id cannot be null");
         Movie movie = movieRepository.findById(id)
-            .orElseThrow( () -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Movie nof found"));
+            .orElseThrow( () -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Movie not found"));
 
-        MovieDTO movieDTO = new MovieDTO();
-        BeanUtils.copyProperties(movie, movieDTO);
-        return movieDTO;
+        return conversionService.convert(movie, MovieDTO.class);
     }
 
     /**
@@ -49,16 +51,7 @@ public class MovieService {
      */
     public List<MovieDTO> findAll() {
         return movieRepository.findAll().stream()
-            .map( movie -> {
-                MovieDTO movieDTO = new MovieDTO();
-                BeanUtils.copyProperties(movie, movieDTO);
-
-                if (Objects.nonNull(movie.getGenre())) {
-                    movieDTO.setGenre(movie.getGenre().name());
-                }
-
-                return movieDTO;
-            })
+            .map( movie -> conversionService.convert(movie, MovieDTO.class))
             .collect(Collectors.toList());
     }
 
@@ -72,26 +65,11 @@ public class MovieService {
     public MovieDTO save(MovieDTO movieDTO) {
         Assert.notNull(movieDTO, "The movieDTO cannot be null");
 
-        Movie movie = new Movie();
-        BeanUtils.copyProperties(movieDTO, movie);
+        Movie movie = conversionService.convert(movieDTO, Movie.class);
+        movie = movieRepository.save(movie);
 
-        if (Objects.nonNull(movieDTO.getGenre())) {
-            movie.setGenre(Genre.valueOf(movieDTO.getGenre()));
-        }
-        Assert.notNull(movie, "The movie cannot be null");
-
-        Movie savedMovie = movieRepository.save(movie);
-        MovieDTO rtaDTO = new MovieDTO();
-
-        if (Objects.nonNull(savedMovie)) {
-            BeanUtils.copyProperties(savedMovie, rtaDTO);
-
-            if (Objects.nonNull(movieDTO.getGenre())) {
-                rtaDTO.setGenre(savedMovie.getGenre().name());
-            }
-        }
-
-        return rtaDTO;
+        return Optional.ofNullable(conversionService.convert(movie, MovieDTO.class))
+            .orElseThrow( () -> new HttpClientErrorException(HttpStatus.BAD_REQUEST, "Movie not saved") );
     }
 
     /**

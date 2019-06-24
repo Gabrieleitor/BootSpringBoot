@@ -1,7 +1,6 @@
 package com.training.service;
 
 import com.training.controller.dto.ActorDTO;
-import com.training.converter.PersonNameConverter;
 import com.training.model.Actor;
 import com.training.model.PersonName;
 import com.training.repository.ActorRepository;
@@ -11,13 +10,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.convert.ConversionService;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -30,10 +30,17 @@ public class ActorServiceTest {
     @Mock
     private ActorRepository actorRepository;
 
+    @Mock
+    private ConversionService conversionService;
+
     @InjectMocks
     private ActorService actorService;
 
     private static final Long ACTOR_ID = 1L;
+
+    private static final String ACTOR_NAME = "Firstname";
+
+    private static final String ACTOR_LASTNAME = "Lastname";
 
     @Test
     public void givenAValidIdWhenFindByIdThenReturnActor() {
@@ -42,7 +49,13 @@ public class ActorServiceTest {
             .id(ACTOR_ID)
             .build();
 
+        ActorDTO returnActorDTO = ActorDTO.builder()
+            .id(ACTOR_ID)
+            .build();
+
         when(actorRepository.findById(anyLong())).thenReturn(Optional.of(expectedActor));
+
+        doReturn(returnActorDTO).when(conversionService).convert(expectedActor, ActorDTO.class);
 
         //when
         ActorDTO actor = actorService.findById(ACTOR_ID);
@@ -80,12 +93,29 @@ public class ActorServiceTest {
         //given
         Actor expectedActor = Actor.builder()
             .id(ACTOR_ID)
+            .name(new PersonName(ACTOR_NAME, ACTOR_LASTNAME))
             .build();
 
         ActorDTO actorToBeSaved = ActorDTO.builder()
+            .name(ACTOR_NAME)
+            .lastName(ACTOR_LASTNAME)
             .build();
 
-        when(actorRepository.save(any(Actor.class))).thenReturn(expectedActor);
+        Actor actorConverter = Actor.builder()
+            .name(new PersonName(ACTOR_NAME, ACTOR_LASTNAME))
+            .build();
+
+        ActorDTO actorToBeReturned = ActorDTO.builder()
+            .id(ACTOR_ID)
+            .name(ACTOR_NAME)
+            .lastName(ACTOR_LASTNAME)
+            .build();
+
+        doReturn(actorConverter).when(conversionService).convert(actorToBeSaved, Actor.class);
+
+        doReturn(actorToBeReturned).when(conversionService).convert(expectedActor, ActorDTO.class);
+
+        when(actorRepository.save(actorConverter)).thenReturn(expectedActor);
 
         //when
         ActorDTO actor = actorService.save(actorToBeSaved);

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.core.convert.ConversionService;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,6 +19,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doReturn;
 
 /**
  * {@link MovieService} unit tests.
@@ -27,6 +29,9 @@ public class MovieServiceTest {
 
     @Mock
     private MovieRepository movieRepository;
+
+    @Mock
+    private ConversionService conversionService;
 
     @InjectMocks
     private MovieService movieService;
@@ -42,7 +47,15 @@ public class MovieServiceTest {
             .name(MOVIE_NAME)
             .build();
 
+        MovieDTO returnMovieDTO = MovieDTO.builder()
+            .id(MOVIE_ID)
+            .name(MOVIE_NAME)
+            .build();
+
+
         when(movieRepository.findById(anyLong())).thenReturn(Optional.of(expectedMovie));
+
+        doReturn(returnMovieDTO).when(conversionService).convert(expectedMovie, MovieDTO.class);
 
         //when
         MovieDTO movie = movieService.findById(MOVIE_ID);
@@ -87,6 +100,20 @@ public class MovieServiceTest {
         MovieDTO movieToBeSaved = MovieDTO.builder()
             .name(MOVIE_NAME)
             .build();
+
+        Movie movieConverter = Movie.builder()
+            .name(MOVIE_NAME)
+            .build();
+
+        MovieDTO movieToBeReturned = MovieDTO.builder()
+            .id(MOVIE_ID)
+            .name(MOVIE_NAME)
+            .build();
+
+
+        doReturn(movieConverter).when(conversionService).convert(movieToBeSaved, Movie.class);
+
+        doReturn(movieToBeReturned).when(conversionService).convert(expectedMovie, MovieDTO.class);
 
         when(movieRepository.save(any(Movie.class))).thenReturn(expectedMovie);
 
