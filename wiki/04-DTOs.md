@@ -7,15 +7,14 @@ $ git checkout -f step-4
 
 ## 4.1 Para que sirve
 
-El patrón DTO (Data transfer object) tiene como finalidad crear un objeto plano para pueda ser utilizado por la capa de presentación para la comunicación con el cliente. Esto permite desacoplar la capa pública, en este caso, del servicio con el modelo interno utilizado para guardar en la base de datos o backend.
+Se utiliza para transferir varios atributos entre el cliente y el servidor o viceversa. Esto permite desacoplar la capa pública, del servicio con el modelo interno utilizado para guardar en la base de datos o backend.
 
-Al ser un objeto (POJO) que permite la comunicación cliente/servidor, puede contener información de múltiples fuentes (Base de datos, tablas, servicios externos, etc) y condensar toda la información necesaria en un único objeto.
-
+<br/>
 ## 4.2 Implementando DTOs con BeanUtils
 
 Continuando con la aplicación de películas, ahora vamos a estar agregando los DTOs para poder comunicarnos.
 
-Vamos a crear el package `com.training.controller.dto` y ahí dentro crearemos dos clases java `ActorDTO.java` y `MovieDTO.java`.
+Vamos a crear el package `com.training.controller.dto` y dentro crearemos dos clases java `ActorDTO.java` y `MovieDTO.java`.
 
 DTO: `ActorDTO.java`:
 ```java
@@ -53,12 +52,12 @@ public class MovieDTO {
 
 }
 ```
-
+<br/>
 ### 4.2.1- Modificando los controllers.
 
 Una vez creados nuestros objetos, tenemos que modificar los `controllers` para que tomen los `DTOs` que creamos.
 
-Tomamos el `ActorController.java` y modificamos todos los métodos para que en la entrada como en la salida devuelva `ActorDTO` y no `Actor`.
+Tomamos el `ActorController.java` y modificamos todos los métodos para que en la entrada/salida devuelva `ActorDTO` y no `Actor`.
 
 Método `view` de un actor.
 ```java
@@ -77,11 +76,11 @@ Método `create` del actor.
     }
 ```
 
-Debemos modificar todo el controller hasta que no quede referencia al modelo `Actor`. En los ejemplos solo se muestran 2 de los 5 métodos a modificar.
+Debemos modificar todo el controller hasta que no quede referencia al modelo `Actor`.
 
 > **Nota:** Debemos implementar los mismos cambios en `MovieController.java` con `MovieDTO` y terminar los métodos faltantes en `ActorController.java`.
 
-
+<br/>
 ### 4.2.2- Modificando los service.
 
 Continuando con la modificación, para que el controller se "entienda" con el service, debemos hacer unas cuantas modificaciones en los service de nuestra aplicación.
@@ -134,18 +133,19 @@ Una vez hecho esto, nuestro DTO estará listo para ser devuelto al controller.
 ```
 Al igual que el anterior, modificamos la firma del método para que obtenga y devuelva un `ActorDTO`. Ahora como queremos crear o modificar un actor de la base de datos, creamos un objeto `Actor` y copiamos los valores del DTO utilizando `BeanUtils.copyProperties`. 
 
-> **Importante:** El `BeanUtils.copyProperties` copia los atributos de un objeto a otro siempre que tengan el mismo nombre y tipo. Cuando difieren alguno de los dos, estos no son copiados al objeto destino.
-
 Como podemos ver, el modelo es ligeramente diferente de DTO y tenemos que copiar los valores del nombre y apellido a mano.
 Una vez guardado el `actor`, hacemos el camino inverso para devolver el DTO con los valores persistidos al controller.
 
-> **Nota:** Para finalizar los cambios, debemos implementar los mismos cambios en `MovieService.java` con `MovieDTO` y terminar los métodos faltantes en `ActorService.java`. Revalidar los tests y adaptarlos para que no tengan errores.
-
 La utilización del `BeanUtils.copyProperties` nos evita estar copiando uno a uno los valores de un objeto a otro, pero no nos abtrae por completo de la conversión de un objeto a otro. Debido a esto, tenemos que estar agregando flujos de control o copiando algunos valores de forma programática.
+
+> **Importante:** El `BeanUtils.copyProperties` copia los atributos de un objeto a otro siempre que tengan el mismo nombre y tipo. Cuando difieren alguno de los dos, estos no son copiados al objeto destino.
 
 Otro punto a ver, es que estamos agregando demasiado código de conversión en la capa de servicio. Para evitar esto, podemos utilizar la capa de converters que provee Spring y desacoplar la conversión de un objeto de la capa de lógica.
 
+<br/>
+> **Nota:** Para finalizar los cambios, debemos implementar los mismos cambios en `MovieService.java` con `MovieDTO` y terminar los métodos faltantes en `ActorService.java`. Revalidar los tests y adaptarlos para que no tengan errores.
 
+<br/>
 ## 4.3 Usando Converters
 
 Actualizamos el entorno al **paso 4.2** de la aplicación.
@@ -226,6 +226,7 @@ En estos momentos los converters son completamente funcionales y basta con inyec
     private ActorDTOToActorConverter actorDTOToActorConverter;
 ```
 
+<br/>
 ### 4.3.2 ConversionService 
 
 Spring posee el servicio `ConversionService` que permite centralizar todos los converters y formatters que haya en la aplicación. Con esto logramos encapsular cualquier conversión en un único servicio y no necesitamos estar inyectando múltiples veces el mismo converter en distintos servicios.
@@ -271,6 +272,7 @@ Ahora vamos al `ActorService` y agregamos el servicio `ConversionService`
 
 Ahora modificamos los métodos para que utilicen nuestro conversor.
 
+<br/>
 #### Método findById
 ```java
     public ActorDTO findById(Long id) {
@@ -284,7 +286,7 @@ Ahora modificamos los métodos para que utilicen nuestro conversor.
 ```
 Vemos que se elimina todo el código extra para la conversión y solo se invoca al service `conversionService.convert` indicando el origen de datos y la class a la que se quiere convertir. 
 
-
+<br/>
 #### Método save
 ```java
     public ActorDTO save(ActorDTO actorDTO) {
@@ -298,7 +300,7 @@ Vemos que se elimina todo el código extra para la conversión y solo se invoca 
 ```
 Si comparamos cómo quedó finalmente el método `save` con el que contábamos anteriormente, vemos que se eliminó todo rastro de lógica de conversión de objetos, gracias al servicio de `conversionService`.
 
-
+<br/>
 ## 4.4 ModelMapper
 
 La bibioteca [ModelMapper](http://modelmapper.org/) permite un mapeo mucho más eficiente y dinámico que el `BeanUtils` visto en este curso. 
