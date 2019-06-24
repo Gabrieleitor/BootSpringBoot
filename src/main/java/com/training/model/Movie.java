@@ -1,7 +1,10 @@
 package com.training.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,8 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-
-import java.util.Set;
+import java.util.List;
 
 /**
  * The movie entity.
@@ -19,6 +21,8 @@ import java.util.Set;
 @Builder
 @Data
 @Entity(name = "movies")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
 
     @Id
@@ -31,6 +35,7 @@ public class Movie {
     private Genre genre;
 
     @ManyToMany(mappedBy = "movies")
-    private Set<Actor> actors;
+    @JsonIgnoreProperties("movies")
+    private List<Actor> actors;
 
 }
