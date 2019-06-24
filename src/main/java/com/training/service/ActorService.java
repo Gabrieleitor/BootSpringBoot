@@ -7,6 +7,8 @@ import com.training.repository.ActorRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -48,10 +50,9 @@ public class ActorService {
      * Returns all the actors.
      * @return a list with actors.
      */
-    public List<ActorDTO> findAll() {
-        return actorRepository.findAll().stream()
-            .map( actor -> conversionService.convert(actor, ActorDTO.class))
-            .collect(Collectors.toList());
+    public Page<ActorDTO> findAll(final Pageable pageable ) {
+        return actorRepository.findAll(pageable)
+            .map( actor -> conversionService.convert(actor, ActorDTO.class));
     }
 
     /**

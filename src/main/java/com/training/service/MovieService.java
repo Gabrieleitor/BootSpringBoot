@@ -8,6 +8,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -49,10 +51,9 @@ public class MovieService {
      * Returns all the movies.
      * @return a list with movies
      */
-    public List<MovieDTO> findAll() {
-        return movieRepository.findAll().stream()
-            .map( movie -> conversionService.convert(movie, MovieDTO.class))
-            .collect(Collectors.toList());
+    public Page<MovieDTO> findAll(final Pageable pageable) {
+        return movieRepository.findAll(pageable)
+            .map( movie -> conversionService.convert(movie, MovieDTO.class));
     }
 
     /**

@@ -10,6 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +20,7 @@ import java.util.Optional;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.isA;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.Mockito.doReturn;
@@ -32,6 +36,9 @@ public class MovieServiceTest {
 
     @Mock
     private ConversionService conversionService;
+
+    @Mock
+    private Pageable pageable;
 
     @InjectMocks
     private MovieService movieService;
@@ -79,14 +86,16 @@ public class MovieServiceTest {
             .name(MOVIE_NAME)
             .build());
 
-        when(movieRepository.findAll()).thenReturn(expectedMovies);
+        Page<Movie> pagedMovies = new PageImpl(expectedMovies);
+
+        when(movieRepository.findAll(isA(Pageable.class))).thenReturn(pagedMovies);
 
         //when
-        List<MovieDTO> movies = movieService.findAll();
+        Page<MovieDTO> movies = movieService.findAll(pageable);
 
         //then
         Assertions.assertNotNull(movies);
-        Assertions.assertEquals(1, movies.size());
+        Assertions.assertEquals(1, movies.getTotalElements());
     }
 
     @Test

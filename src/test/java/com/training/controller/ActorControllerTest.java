@@ -2,17 +2,18 @@ package com.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.training.controller.dto.ActorDTO;
-import com.training.model.Actor;
 import com.training.service.ActorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -50,7 +51,7 @@ public class ActorControllerTest {
             .andExpect(status().isOk());
 
         //then
-        verify(actorService).findAll();
+        verify(actorService).findAll(any(Pageable.class));
     }
 
     @Test

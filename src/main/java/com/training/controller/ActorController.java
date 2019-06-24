@@ -4,6 +4,8 @@ import com.training.controller.dto.ActorDTO;
 import com.training.model.Actor;
 import com.training.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,8 +44,8 @@ public class ActorController {
      * @return a list of actors
      */
     @GetMapping
-    public List<ActorDTO> getActors() {
-        return actorService.findAll();
+    public Page<ActorDTO> getActors( final Pageable pageable ) {
+        return actorService.findAll( pageable );
     }
 
     /**
