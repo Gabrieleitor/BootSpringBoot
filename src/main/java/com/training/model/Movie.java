@@ -1,9 +1,6 @@
 package com.training.model;
 
-<<<<<<< HEAD
-=======
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
->>>>>>> step-4
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
