@@ -195,7 +195,7 @@ http://localhost:8080/h2-console/
 
 ## 2.6. Probando la aplicación con Postman
 [Postman](https://www.getpostman.com/) es una herramienta que nos permite probar servicios web con solo indicar la url que definimos en nuestro controlador, el método HTTP correspondiente y los parámetros necesarios. <br /> 
-Se adjunta la Collection de Postman en la carpeta `postman` con los métodos de nuestro CRUD para ser importada una vez instalada la herramienta: File -> Import... y lista para usar! 
+Se adjunta la Collection de Postman en la carpeta [postman](https://github.com/regueira/BootSpringBoot/tree/master/postman) con los métodos de nuestro CRUD para ser importada una vez instalada la herramienta: File -> Import... y lista para usar! 
 
 ---
 [Siguiente paso](03-SpringData.md)

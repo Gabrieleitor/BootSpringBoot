@@ -13,13 +13,13 @@
 					{
 						"key": "Content-Type",
 						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
+						"type": "text",
+						"value": "application/json"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Rambo IV\"\n}"
+					"raw": "{\n\t\"genre\": \"COMEDY\"\n}"
 				},
 				"url": {
 					"raw": "localhost:8080/movies/1",
@@ -104,10 +104,18 @@
 		{
 			"name": "Delete movie by Id",
 			"request": {
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": ""
+					"raw": "localhost:8080/movies/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"4"
+					]
 				}
 			},
 			"response": []
