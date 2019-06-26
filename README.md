@@ -19,7 +19,7 @@ Para poder aprovechar al máximo el training, será necesario contar con:
 * [Editorconfig](https://editorconfig.org/) (Si usas Eclipse debes bajar un plugin, si usas IntelliJ no es necesario)
 
 
-## Temario
+## Temas
 
 1. [Primeros pasos](wiki/01-PrimerosPasos.md)
     - Introducción a Spring Boot
@@ -30,6 +30,7 @@ Para poder aprovechar al máximo el training, será necesario contar con:
     - Creación del modelo de datos
     - Creación de un repositorio
     - Configurando JPA con H2
+	- Probando la aplicación con Postman
 3. [Spring Data - JPA](wiki/03-SpringData.md) 
     - Mapeo de entidades
         - Mapeo de un objeto
