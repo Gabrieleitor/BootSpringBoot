@@ -5,7 +5,7 @@ Actualizamos el entorno al **paso 4** de la aplicación.
 $ git checkout -f step-4
 ```
 
-## 4.1 Para que sirve
+## 4.1 Para qué sirve
 
 Se utiliza para transferir varios atributos entre el cliente y el servidor o viceversa. Esto permite desacoplar la capa pública, del servicio con el modelo interno utilizado para guardar en la base de datos o backend.
 
@@ -87,7 +87,7 @@ Debemos modificar todo el controller hasta que no quede referencia al modelo `Ac
 
 ### 4.2.2- Modificando los service.
 
-Continuando con la modificación, para que el controller se "entienda" con el service, debemos hacer unas cuantas modificaciones en los service de nuestra aplicación.
+Continuando con la modificación, para que el controller se "entienda" con el service, debemos hacer varias modificaciones en los servicios de nuestra aplicación.
 
 Siguiendo con `ActorService.java` tenemos que reemplazar los métodos para que comiencen a utilizar `ActorDTO` y no `Actor`.
 
@@ -170,7 +170,7 @@ Dentro del package nuevo, creamos dos clases:
 
 #### Clase `ActorDTOToActorConverter.java`
 
-permite convertir el DTO a un modelo.
+Permite convertir el DTO a un modelo.
 
 ```java
 @Component
@@ -292,7 +292,7 @@ Ahora modificamos los métodos para que utilicen nuestro conversor.
         return conversionService.convert(actor, ActorDTO.class);
     }
 ```
-Vemos que se elimina todo el código extra para la conversión y solo se invoca al service `conversionService.convert` indicando el origen de datos y la class a la que se quiere convertir. 
+Vemos que se elimina todo el código extra para la conversión y sólo se invoca al service `conversionService.convert` indicando el origen de datos y la class a la que se quiere convertir. 
 
 &nbsp;
 
@@ -313,9 +313,9 @@ Si comparamos cómo quedó finalmente el método `save` con el que contábamos a
 
 ## 4.4 ModelMapper
 
-La bibioteca [ModelMapper](http://modelmapper.org/) permite un mapeo mucho más eficiente y dinámico que el `BeanUtils` visto en este curso. 
+La bibioteca [ModelMapper](http://modelmapper.org/) permite un mapeo mucho más eficiente y dinámico que `BeanUtils` visto en este curso. 
 
-La convinación del [ModelMapper](http://modelmapper.org/) en conjunto con el servicio `conversionService` hacen una herramienta muy poderosa de conversión y mapeo de objetos.
+La combinación del [ModelMapper](http://modelmapper.org/) en conjunto con el servicio `conversionService` hacen una herramienta muy poderosa de conversión y mapeo de objetos.
 
 
 ---
