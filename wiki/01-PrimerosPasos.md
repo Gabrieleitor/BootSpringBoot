@@ -14,7 +14,7 @@ $ git checkout -f step-1
 ``` 
 Debes repetir esto para cada paso futuro y modificar el número del paso al correspondiente.
 
-> **Nota:** Al ejecutarse el comando, se limipiará el entorno de desarrollo haciendo que se pierdan los cambios que se hayan realizado y dejandolo listo para continuar.
+> **Nota:** Al ejecutarse el comando, se limpiará el entorno de desarrollo haciendo que se pierdan los cambios que se hayan realizado y dejandolo listo para continuar.
 
 
 ## 1.1- Estructura general del proyecto
