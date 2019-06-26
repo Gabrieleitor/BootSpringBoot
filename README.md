@@ -35,7 +35,6 @@ Para poder aprovechar al máximo el training, será necesario contar con:
         - Mapeo de un objeto
         - Mapeo de relaciones
         - Converter atribute
-    - Liquibase
     - Configurando MySQL (Spin-off)
 4. [Trabajando con DTOs](wiki/04-DTOs.md)
     - Para que sirve
@@ -43,4 +42,9 @@ Para poder aprovechar al máximo el training, será necesario contar con:
     - Converters
     - ModelMapper
 5. [Paginacion](wiki/05-paginate.md)
+    - Implementando paginación
+    - Filtros avanzados con specification
 6. [Exceptions](wiki/06-exceptions.md)
+    - Implementando un exception handler
+    - Mejorando el handler
+    - HttpClientErrorException y HttpServerErrorException
