@@ -67,7 +67,10 @@ muchas películas y en una película pueden actuar varios actores." <br />
 Clase `Actor`:
 
 ```java
+@Data
 @Entity(name = "actors")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Actor {
 
     @Id
@@ -78,11 +81,8 @@ public class Actor {
     private PersonName name;
 
     @ManyToMany
-    @JoinTable(
-        name = "movie_actor",
-        joinColumns = @JoinColumn(name = "actor_id"),
-        inverseJoinColumns = @JoinColumn(name = "movie_id"))
-    private Set<Movie> movies;
+    @JsonIgnoreProperties("actors")
+    private List<Movie> movies;
 
 }
 ```
@@ -90,7 +90,10 @@ public class Actor {
 
 Clase `Movie`:
 ```java
+@Data
 @Entity(name = "movies")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Movie {
 
     @Id
@@ -103,16 +106,15 @@ public class Movie {
     private Genre genre;
 
     @ManyToMany(mappedBy = "movies")
-    private Set<Actor> actors;
+    @JsonIgnoreProperties("movies")
+    private List<Actor> actors;
 
 }
 ```
 
 Como consecuencia de esta relación, se creará una tabla llamada "Join table" en donde se guardarán las dos claves primarias 
 de `Actor` y `Movie`. <br />
-Se eligió como entidad propietaria (es decir, donde se configura la relación) a `Actor`. Esta configuración se realiza con 
-la annotation `@JoinTable`, renombrando la tabla e indicando cuáles son las claves con la annotation `@JoinColumn`. <br /><br />
-Del otro lado de la relación sólo debemos indicar el nombre del campo que mapea la relación, en este caso "movies".<br />
+Se eligió como entidad propietaria (es decir, donde se configura la relación) a `Actor`. <br />
 
 Verificar ingresando a la consola de H2.
 
