@@ -49,11 +49,18 @@ dos entidades. En JPA, esas relaciones pueden ser:
 
 - `@OneToOne`: significa que cada fila de una entidad se refiere a una y solo una fila de otra entidad.
 
+<img src="images/one-one.png" width="250" alt="One-To-One"/>
+
 - `@OneToMany`: se refiere a la relación entre dos entidades en la que una fila de una entidad puede estar vinculado con 
 muchos elementos de la otra entidad, pero un elemento de B está vinculado a un solo elemento de A. 
 Se define utiliando las annotations `@OneToMany` and `@ManyToOne`. 
 
+<img src="images/one-many.png" width="250" alt="One-To-Many"/>
+
+
 - `@ManyToMany`: se da cuando una o más filas de una entidad están asociadas con más de una fila de otra entidad.
+
+<img src="images/many-to-many.png" width="250" alt="Many-To-Many"/>
 
 A modo de ejemplo, agregaremos una relación `@ManyToMany` entre `Movie` y `Actor` porque "un actor puede haber actuado en
 muchas películas y en una película pueden actuar varios actores." <br />
