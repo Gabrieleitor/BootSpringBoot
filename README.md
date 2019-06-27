@@ -36,7 +36,7 @@ Para poder aprovechar al máximo el training, será necesario contar con:
         - Mapeo de un objeto
         - Mapeo de relaciones
         - Converter atribute
-    - Configurando MySQL (Spin-off)
+    - Probando la aplicación con Postman
 4. [Trabajando con DTOs](wiki/04-DTOs.md)
     - Para que sirve
     - BeanUtils
