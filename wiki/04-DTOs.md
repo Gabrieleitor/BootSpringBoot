@@ -140,7 +140,7 @@ Al igual que el anterior, modificamos la firma del método para que obtenga y de
 Como podemos ver, el modelo es ligeramente diferente de DTO y tenemos que copiar los valores del nombre y apellido a mano.
 Una vez guardado el `actor`, hacemos el camino inverso para devolver el DTO con los valores persistidos al controller.
 
-La utilización del `BeanUtils.copyProperties` nos evita estar copiando uno a uno los valores de un objeto a otro, pero no nos abtrae por completo de la conversión de un objeto a otro. Debido a esto, tenemos que estar agregando flujos de control o copiando algunos valores de forma programática.
+La utilización del `BeanUtils.copyProperties` nos evita estar copiando uno a uno los valores de un objeto a otro, pero no nos abstrae por completo de la conversión de un objeto a otro. Debido a esto, tenemos que estar agregando flujos de control o copiando algunos valores de forma programática.
 
 > **Importante:** El `BeanUtils.copyProperties` copia los atributos de un objeto a otro siempre que tengan el mismo nombre y tipo. Cuando difieren alguno de los dos, estos no son copiados al objeto destino.
 
@@ -159,7 +159,7 @@ Actualizamos el entorno al **paso 4.2** de la aplicación.
 $ git checkout -f step-4.2
 ```
 
-Estos están pensados para encapsular toda la lógica que se necesita para convertir un objeto en otro, sin importar de que forma se realize. De esta forma evitaremos agregar código a nuestra capa de servicio, quedando mucho mas simple, prolijo y mantenible.
+Estos están pensados para encapsular toda la lógica que se necesita para convertir un objeto en otro, sin importar de que forma se realice. De esta forma evitaremos agregar código a nuestra capa de servicio, quedando mucho mas simple, prolijo y mantenible.
 
 ### 4.3.1 Creando los Converters
 

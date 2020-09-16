@@ -4,7 +4,7 @@ En este paso veremos algunos aspectos básicos del proyecto tales como la estruc
 
 Antes de inciar, debemos clonar el repositorio donde se encuentra todo el proyecto que estaremos viendo en este training.
 ```bash
-$ git clone git@github.com:regueira/BootSpringBoot.git
+$ git clone https://github.com/regueira/BootSpringBoot.git
 ```
 Esto habrá generando la carpeta `BootSpringBoot`. 
 
@@ -80,7 +80,7 @@ Debieras ver algo parecido a:
  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
   '  |____| .__|_| |_|_| |_\__, | / / / /
  =========|_|==============|___/=/_/_/_/
- :: Spring Boot ::        (v2.1.5.RELEASE)
+ :: Spring Boot ::        (v2.3.3.RELEASE)
 
 (...)
 
