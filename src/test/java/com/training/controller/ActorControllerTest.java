@@ -2,7 +2,6 @@ package com.training.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.training.controller.dto.ActorDTO;
-import com.training.model.Actor;
 import com.training.service.ActorService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
