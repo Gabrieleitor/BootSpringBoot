@@ -5,6 +5,10 @@ Actualizamos el entorno al **paso 5** de la aplicación.
 $ git checkout -f step-5
 ```
 
+##### Requerimientos:
+- Agregar paginación al servicio.
+
+
 ## 5.1 Implementando paginación
 
 En este paso veremos cómo implementar la paginación a los listados de nuestra aplicación de películas.

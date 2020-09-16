@@ -6,6 +6,12 @@ Actualizamos el entorno al **paso 3** de la aplicación.
 $ git checkout -f step-3
 ```
 
+##### Requerimientos:
+- Cada Actor contará con un nombre.
+- CRUD del Actor.
+- Relacionar las entities Actor y Movie.
+
+
 ## 3.1. Mapeo de entidades
 Continuando con nuestra aplicación de películas, en este paso se agregarán más clases al modelo para poder mapear 
 las relaciones entre ellas.

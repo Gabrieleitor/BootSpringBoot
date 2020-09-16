@@ -5,6 +5,10 @@ Actualizamos el entorno al **paso 4** de la aplicación.
 $ git checkout -f step-4
 ```
 
+##### Requerimientos:
+- Desacoplar capa de modelo de datos de la capa de integración/cliente.
+
+
 ## 4.1 Para qué sirve
 
 Se utiliza para transferir varios atributos entre el cliente y el servidor o viceversa. Esto permite desacoplar la capa pública, del servicio con el modelo interno utilizado para guardar en la base de datos o backend.

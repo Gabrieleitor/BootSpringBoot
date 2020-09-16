@@ -7,6 +7,10 @@ $ git checkout -f step-6
 
 En este paso vamos a ver como implementar el manejo global de exceptions y errores en nuestras APIs y cómo enviar una respuesta al cliente en Spring Boot.
 
+##### Requerimientos:
+- Manejo de errores de forma eficiente y ordenada.
+- Definir una estructura estandar de respuesta ante un error.
+
 ## 6.1 Implementando un exception handler
 
 La idea de un handler global que maneje los errores de nuestra API, es poder darle el mismo tratamiento a los errores. Para que nuestra respuesta sea consistente en toda la aplicación.
