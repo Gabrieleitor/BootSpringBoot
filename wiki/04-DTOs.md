@@ -313,7 +313,7 @@ Si comparamos cómo quedó finalmente el método `save` con el que contábamos a
 
 ## 4.4 ModelMapper / MapStruct
 
-Las bibiotecas [ModelMapper](http://modelmapper.org/) y [MapStruct](https://mapstruct.org/) permite un mapeo mucho más eficiente y dinámico que `BeanUtils` visto en este curso. 
+Las bibiotecas [ModelMapper](http://modelmapper.org/) o [MapStruct](https://mapstruct.org/) permite un mapeo mucho más eficiente y dinámico que `BeanUtils` visto en este curso. 
 
 La combinación de [ModelMapper](http://modelmapper.org/) o [MapStruct](https://mapstruct.org/) en conjunto con el servicio `conversionService` hacen una herramienta muy poderosa de conversión y mapeo de objetos.
 
